@@ -1,0 +1,4 @@
+pdflatex kurkiewicz16
+bibtex kurkiewicz16
+pdflatex kurkiewicz16
+pdflatex kurkiewicz16
