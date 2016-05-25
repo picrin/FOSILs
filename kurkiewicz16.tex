@@ -67,7 +67,7 @@ Let $\gamma$ be a FOSIL, $R^{\gamma}$ be a collection of regions of $\gamma$, an
 This auxiliary result has a rather technical proof, to which we devote a separate chapter.
 
 \begin{definition}[Edge-Connectedness]
-Let $\gamma$ be a FOSIL. Let $R_{1}, R_{2} \in R^{\gamma}$ be regions of $\gamma$, and $C_{\gamma}$ be the crossing set of $\gamma$. We will say that $R_{1}$ and $R_{2}$ are edge-connected if $R_{1} \neq R_{2}$ and there exists an open, connected subset of $[0, 1]$, say $S$, with the property that $S \cap C_{f} = \emptyset$, and such that $R_{1} \cup \gamma(S) \cup R_{2}$ is connected.
+Let $\gamma$ be a FOSIL. Let $R_{1}, R_{2} \in R^{\gamma}$ be regions of $\gamma$, and $C_{\gamma}$ be the crossing set of $\gamma$. We will say that $R_{1}$ and $R_{2}$ are edge-connected if $R_{1} \neq R_{2}$ and there exists an open, connected subset of $[0, 1]$, say $S$, such that $S \cap C_{f} = \emptyset$, and such that $R_{1} \cup \gamma(S) \cup R_{2}$ is connected.
 \end{definition}
 
 \begin{proposition}[Edge-Connectedness Reflexivity]
@@ -83,11 +83,11 @@ Let $V$ be a finite set. Let $E$ be a subset of $V\times V$. Then $G=(V, E)$ is 
 \end{definition}
 
 \begin{definition}[Region Graph]
-Let $R^{\gamma}$ be the collection of regions of a FOSIL $\gamma$. Let $E = \{(R_{1}, R_{2}) \in R^{\gamma} \times R^{\gamma} \mid R_{1} \operatorname{edge-connected} R_{2}\}$. Then G=$(R^{\gamma},E)$ is called a region graph of a FOSIL $\gamma$.
+Let $R^{\gamma}$ be the collection of regions of a FOSIL $\gamma$. Let $E = \{(R_{1}, R_{2}) \in R^{\gamma} \times R^{\gamma} \mid R_{1} \operatorname{edge-connected} R_{2}\}$. Then $G_{\gamma}=(R^{\gamma},E)$ is called a region graph of a FOSIL $\gamma$.
 \end{definition}
 
 \begin{proposition}[Region Graph is a Graph]
-The region graph $G = (V, E)$ of a FOSIL $\gamma$ is a graph.
+The region graph $G_{\gamma} = (V, E)$ of a FOSIL $\gamma$ is a graph.
 \end{proposition}
 
 \begin{proof}
@@ -105,7 +105,7 @@ Let $\frak{G}$ be a collection of graphs. Then $\sim_{G}$ is an equivalence rela
 TODO Symmetry, transitivity, reflexivity.
 \end{proof}
 
-\begin{definition}[Graph Path]
+\begin{definition}[Path in Graph]
 Let $G=(V, E)$ be a graph. Let $P=\{v_{k}\}$ be a sequence of vertices in G, such that for any $v_{i}, v_{i+1} \in P$, we have that $(v_{i}, v_{i+1}) \in E$. Then $P$ is called a path in graph G.
 \end{definition}
 
@@ -117,11 +117,15 @@ Let $G=(V, E)$ be a graph. Let us say that $G$ is connected if there exists a pa
 Let $G=(V,E)$ be a graph. If there exist disjoint $S_{1}, S_{2} \subseteq V$ with $S_{1} \cup S_{2} = V$ such that for any $v_{i}, w_{i} \in S_{i}$ we have $(v_{i}, w_{i}) \notin E$, then G is called a bipartite graph.
 \end{definition}
 
+\begin{definition}[Planar Graph]
+TODO define planar graphs.
+\end{definition}
+
 \begin{theorem}[FOSIL Classification Theorem]
 
-Let $\frak{F}$ be the collection of all FOSILs. Let $\frak{R}=\{R^{\gamma} | \gamma \in \frak{F}\}$ be the collection of corresponding region graphs. Let $\frak{B}$ be the collection of all connected bipartite graphs. The function $$\Phi : \frak{R}/\sim_{G} \mapsto \frak{F}/\sim_{G}$$ given by $$\Phi([R]_{\frak{R}}) = [R]_{\frak{B}}$$ is a well-defined bijection.
+Let $\frak{F}$ be the collection of all FOSILs. Let $\frak{G}=\{G_{\gamma} | \gamma \in \frak{F}\}$ be the collection of corresponding region graphs. Let $\frak{B}$ be the collection of all connected, bipartite, planar graphs, containing more than 1 vertex. By abuse of notation, let $\sim_{G}$ denote the equivalence relation given by graph isomorphism on both $\frak{G}$ and $\frak{B}$. The function $$\Phi : \frak{G}/\sim_{G} \mapsto \frak{F}/\sim_{G}$$ given by $$\Phi([G]_{\frak{G}}) = [G]_{\frak{B}}$$ is a well-defined bijection.
 
-In other words, $\frak{R} \subseteq \frak{B}$ and for any $B \in \frak{B}$ there is an $R \in \frak{R}$ with $R \sim_{G} B$.
+In other words, $\frak{G} \subseteq \frak{B}$ and for any $B \in \frak{B}$ there is a $G \in \frak{G}$ with $G \sim_{G} B$.
 \end{theorem}
 We devote the next chapter to the proof of this theorem.
 
