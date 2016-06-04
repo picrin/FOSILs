@@ -1,3 +1,5 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PREAMBLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \title{Classification of Finitely Often Self-Intersecting Loops in $\mathbb{R}^{2}$ under equivalence given by isomorphism of corresponding Region Graphs.}
 \author{
         Adam Kurkiewicz \\
@@ -8,33 +10,72 @@
 \date{\today}
 \documentclass{article}
 
+\usepackage[british]{babel}
+
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{epstopdf}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 
-\theoremstyle{proposition}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+
+\theoremstyle{plain}
 \newtheorem{proposition}{Proposition}
 
-\theoremstyle{theorem}
 \newtheorem{theorem}{Theorem}
 \begin{document}
 \maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{curve1.eps}
+\caption{2-colouring of a closed loop drawn on a sheet of paper.}
+\label{figure:curve1}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{curve2.eps}
+\caption{Region graph of the closed loop from Figure \ref{figure:curve1}. Vertices corresponding to regions enclosed by the loop are numbered.}
+\label{figure:curve2}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
 Abstract placeholder
 \end{abstract}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Introduction}
+This work stems from an intuitive observation that for any loop one can draw on a sheet of paper there seems to exist a colouring, which assigns one of two possible colours to any region enclosed by the loop, such that no two neighbouring regions share the same colour. Figure \ref{figure:curve1} gives a graphical representation of this intuition. We can go further and view coloured regions as vertices in a graph, with vertices representing any two neighbouring regions connected with an edge. Figure 2 shows such a graph derived from the loop in Figure \ref{figure:curve1}. It is natural to consider all possible graphs that can be constructed in such way. Can we describe this collection precisely using familiar graph theoretic adjectives (bipartite, planar, connected, etc.)?
+
+%Although graph theory is a child of topology, modern development separated  from its parent developing its own tools and methods. This work, somewhat unusually, takes as much from classical topology (homeomorphism, path-connectedness) as it does from graph theory (planarity, 2-colourability).
+In this work we make rigorous and prove the 2-colourability intution suggested by Figure \ref{figure:curve1} for a certain class of loops. We also identify the class of graphs corresponding to this class of loops, by constructing an appropriate surjective function between the two classes.
+
 \begin{definition}[Almost Injectivity]
 Let $f: X \mapsto Y$ be a function. Let us say that $f$ is almost injective, if $f(x_{1})=f(x_{2}) \implies x_{1} = x_{2}$ holds for all but finitely many $x_{i}\in X$.
 \end{definition}
 
+\begin{example}[Almost Injective Circle]\label{example:AIC}
+$f: [0, 1] \mapsto \mathbb{R}^2$ defined by $$f(x) = (\sin(2 \pi x), \cos(2 \pi x))$$ is an almost injective function, which is injective on $(0, 1)$ and fails to be injective on $\{0, 1\}$. Figure \ref{figure:curve1} is a plot of another almost-injective function.
+\end{example}
+
 \begin{definition}[Crossing Set]
 Let $f: X \mapsto Y$ be an almost injective function. Let the crossing set $C_{f}$ of $f$ be defined by $$C_{f} = \{x_{1}, x_{2} \mid f(x_{1}) = f(x_{2}) \land x_{1} \neq x_{2}\}$$
 \end{definition}
+
+\begin{example}
+The set $\{0, 1\}$ is a crossing set of the almost injective circle from Example \ref{example:AIC}.
+\end{example}
 
 \begin{definition}[Crossing Equivalence]
 Let $C_{f}$ be the crossing set of of an almost injective function $f$. Let crossing equivalence $\sim_{C}$ be a relation on $C_{f}$ defined by $c_{1} \sim_{C} c_{2} \iff f(c_{1})=f(c_{2})$ for any $c_{1}, c_{2} \in C_{f}$.
@@ -99,7 +140,7 @@ Let $G_{1}=(V_{1}, E_{1})$ and $G_{2}=(V_{2}, E_{2})$ be graphs with $\lvert V_{
 \end{definition}
 
 \begin{proposition}[Graph Isomorphism Equivalence Relation]
-Let $\frak{G}$ be a collection of graphs. Then $\sim_{G}$ is an equivalence relation on $\frak{G}$.
+Let $\mathfrak{G}$ be a collection of graphs. Then $\sim_{G}$ is an equivalence relation on $\mathfrak{G}$.
 \end{proposition}
 \begin{proof}
 TODO Symmetry, transitivity, reflexivity.
@@ -123,9 +164,9 @@ TODO define planar graphs.
 
 \begin{theorem}[FOSIL Classification Theorem]
 
-Let $\frak{F}$ be the collection of all FOSILs. Let $\frak{G}=\{G_{\gamma} | \gamma \in \frak{F}\}$ be the collection of corresponding region graphs. Let $\frak{B}$ be the collection of all connected, bipartite, planar graphs, containing more than 1 vertex. By abuse of notation, let $\sim_{G}$ denote the equivalence relation given by graph isomorphism on both $\frak{G}$ and $\frak{B}$. The function $$\Phi : \frak{G}/\sim_{G} \mapsto \frak{F}/\sim_{G}$$ given by $$\Phi([G]_{\frak{G}}) = [G]_{\frak{B}}$$ is a well-defined bijection.
+Let $\mathfrak{F}$ be the collection of all FOSILs. Let $\mathfrak{G}=\{G_{\gamma} | \gamma \in \mathfrak{F}\}$ be the collection of corresponding region graphs. Let $\mathfrak{B}$ be the collection of all connected, bipartite, planar graphs, containing more than 1 vertex. By abuse of notation, let $\sim_{G}$ denote the equivalence relation given by graph isomorphism on both $\mathfrak{G}$ and $\mathfrak{B}$. The function $$\Phi : \mathfrak{G}/\sim_{G} \mapsto \mathfrak{F}/\sim_{G}$$ given by $$\Phi([G]_{\mathfrak{G}}) = [G]_{\mathfrak{B}}$$ is a well-defined bijection.
 
-In other words, $\frak{G} \subseteq \frak{B}$ and for any $B \in \frak{B}$ there is a $G \in \frak{G}$ with $G \sim_{G} B$.
+In other words, $\mathfrak{G} \subseteq \mathfrak{B}$ and for any $B \in \mathfrak{B}$ there is a $G \in \mathfrak{G}$ with $G \sim_{G} B$.
 \end{theorem}
 We devote the next chapter to the proof of this theorem.
 
