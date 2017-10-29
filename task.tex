@@ -1,0 +1,48 @@
+A rectagon is a special type of polygon, which is composed of finitely many vertical and horizontal sections. Each section is attached to one other section on each end. Each section can intersect other sections, but only finitely many times. The following, for example, is a valid rectagon, with each fragment numbered in the order it was drawn.
+
+Each rectagon divides the plane into finitely many regions. A region is a collection of points in the plane, which can be reached from one another without crossing any part of the rectagon. Two regions are said to be neighbours, if they are situated inifinitely close to any non-intersecting part of the rectagon.
+
+Show that any rectagon can be coloured using two colours in such way that no two neighbouring regions are coloured with the same colour.
+
+Solution:
+
+Lemma 1. Let $R$ be any rectagon. Any vertical ray, which is not colinear with any vertical section of $R$ crosses $R$ an even number of times.
+
+Proof
+
+By contradiction. From the definition of $R$ and the fact that each rectagon section has only two ends, there exists a cyclic ordering of sections, unique up to direction and the choice of the first section. Let us choose an arbitrary vertical section as the first section and an arbitrary direction, thereby defining a cycling ordering.
+
+From the definition of the vertical ray, the first section of $R$ lies outside of the ray. Without loss of generality, assume that the first section of $R$ lies on the left of the vertical ray. Further, assume that the ray crosses an odd number of horizontal sections. Let us assign a direction of each section, which respects the cyclic ordering. Let us retrace the rectagon, from the first to the last section, marking each section crossed by the ray as we trace it. As the number of horizontal sections crossing the ray is odd, by the time we get to the last section we are on the right side of the ray, and as all the sections crossing the ray have now been marked as retraced, we can't attach the last section to the first section. Therefore $R$ is not a valid rectagon, contradiction.
+
+Now, the only two remaining possibilities are an infinite or an even number of horizontal sections. The former can't be, since there are only finitely many horizontal sections in $R$. Therefore the number of horizontal sections crossing the ray is even.
+
+The algorithm
+
+We will not only show that a colouring exists, but we will also provide an algorithm to find it.
+
+The algorithm to colour a rectagon $R$ is:
+
+While there exists an uncoloured region $I$:
+  1. Choose a point $p$ inside $I$, such that no vertical section of $R$ is colinear with $p$.
+  2. Draw a vertical ray through $p$.
+  3. Starting from the bottom of the vertical ray, and going up, colour the regions, switching the colour each time we cross a horiozontal section.
+
+First, we must show that such colouring is well-defined, and will deliver the same result irrespective of the choice of the region and point inside the region. Second, we must show that such colouring is valid, i.e. no two neighbouring regions are coloured with the same colour. We will tackle both of those properties by considering a partition of rectagon into slices.
+
+A slice is a maximally wide vertical stripe, which doesn't include any vertical sections of $R$, but includes some (parts of the) horizontal sections of $R$. Pictorially, a slice can be represented with two dotted vertical lines as the borders of the slice, enclosing a part of the plane, which stretches infinitely far to the top and to the bottom. The inside of the slice includes regions and fragments of regions of $R$, as well as horizontal sections and fragments of horizontal sections of $R$.
+
+When choosing any point inside the slice, we assign a colouring to each part of a region visible through the slice in a way which is both consistent and valid. Let us show that these properties also hold when considering two neighbouring slices. As any rectagon can be partitioned into finitely many slices, this will let us establish, by finite induction, the proof of the theorem.
+
+We will consider a number of cases.
+
+By lemma 1, we can restrict our attention to cases, where both neighbouring slices contain an even number of horiozontal sections of $R$. By definition of a slice, each border between two neighbouring slices is guaranteed to contain at least one vertical section. By the definition of the rectagon, any two vertical sections can cross each other at most once. By abuse of notation, we will collapse such cluster of vertical sections into a single section. Further, in each case we will consider only the lowest vertical section. After showing that the coloring is both well-defined and valid up to and including that section, we will be able to eliminate this case and proceed recursively until we are left with a border between slices with no vertical sections left. This case is analogous to the case of a single slice, and as we've shown, results in a colouring, which is both well-defined and valid.
+
+Case 0. No vertical sections in the boundary between the slices.
+
+As discussed before, the colouring is both well-defined and valid in this case. The case can't result in the original decomposition of rectagon into slices, but is important as the base case of the recursive elimination of vertical sections.
+
+Case 1. The lowest vertical section is attached to two horizontal sections, which are both situated on the same side of the slice border, crossing finitely many horizontal sections.
+
+Case 2. The lowest vertical section is attached to two horizontal sections, which are both situated on the opposite sides of the slice border, crossing finitely many horizontal sections.
+
+By finite induction on the number of vertical sections situated in the border between any two neighbouring slices, cases 0 1 and 2 show that the colouring is well-defined when we restring our attention to these slices. By finite induction on the number of slices the colouring is well-defined and valid across the whole rectagon.
